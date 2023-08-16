@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col gap-16 min-h-[100%] text-2xl p-6 text-gray-600 pt-8">
+    <aside className="flex flex-col gap-16 min-h-[100%] text-2xl p-6 text-gray-600 pt-8 bg-purple-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100">
       <div className="flex items-center gap-3">
         <Image
           src={"/asset/playground.png"}
