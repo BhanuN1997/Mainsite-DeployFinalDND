@@ -1,5 +1,6 @@
 "use client";
 import ReactFlow, { Controls,Edge,Node } from "reactflow";
+import 'reactflow/dist/style.css';
 
 const initialNodes = [
   { id: '1', position: { x: 0, y: 0 }, data: { label: 'HELLO 1' } },
