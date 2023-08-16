@@ -1,0 +1,38 @@
+import React from "react";
+import Image from "next/image";
+
+const Sidebar = () => {
+  return (
+    <aside className="flex flex-col gap-16 min-h-[100%] text-2xl p-6 text-gray-600 pt-8">
+      <div className="flex items-center gap-3">
+        <Image
+          src={"/asset/playground.png"}
+          alt="Playground image"
+          height={20}
+          width={20}
+        />
+        PlayGround
+      </div>
+      <div className="flex items-center gap-3">
+      <Image
+          src={"/asset/playground.png"}
+          alt="marketplace image"
+          height={30}
+          width={20}
+        />
+        MarketPlace
+      </div>
+      <div className="flex items-center gap-3">
+        <Image
+          src={"/asset/templates.png"}
+          alt="template image"
+          height={20}
+          width={20}
+        />
+        Saved Templates
+      </div>
+    </aside>
+  );
+};
+
+export default Sidebar;
