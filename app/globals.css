@@ -7,10 +7,9 @@
 }
 
 .node_container{
-   height: 180px;
-   width: 180px;
-   max-width: 300px;
-   max-height: 300px;
+   height: 300px;
+   width: 300px;
+   
 }
 
 .purple_gradient{
@@ -37,12 +36,32 @@
 .justify_center{
     justify-content: center;
 }
+
+
+.items_center {
+    align-items: center;
+}
 ._p_8px{
     padding: 8px;
 }
 
+._pl_8px{
+    padding-left: 8px;
+}
+
 ._mr_8px{
     margin-right: 8px;
+}
+
+._ml_16px{
+    margin-left: 16px;
+}
+
+
+
+
+._mb_16px{
+    margin-bottom: 16px;
 }
 ._input {
     max-width: 200px;
@@ -61,3 +80,27 @@
   ._input:focus {
     border-color: #3490dc;
   }
+
+  ._inline_block{
+    display: inline-block;
+  }
+
+  ._col {
+    flex-direction: column;
+
+  }
+
+.button_padding{
+    padding: 1em 1.5em;
+}
+
+.margin_8px{
+    margin: 8px;
+}
+
+
+._gap_16px{
+    gap: 16px;
+}
+
+
