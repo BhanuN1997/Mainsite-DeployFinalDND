@@ -1,3 +1,63 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    box-sizing: border-box;
+}
+
+.node_container{
+   height: 180px;
+   width: 180px;
+   max-width: 300px;
+   max-height: 300px;
+}
+
+.purple_gradient{
+   background-image: linear-gradient(180deg, #E1E0FB 11.46%, #E1ECF7 61.98%)
+}
+
+.drop_shadow_md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+._heading{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+._text {
+    font-size: 12px;
+}
+
+._flex{
+    display: flex;
+}
+
+.justify_center{
+    justify-content: center;
+}
+._p_8px{
+    padding: 8px;
+}
+
+._mr_8px{
+    margin-right: 8px;
+}
+._input {
+    max-width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #333;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    outline: none;
+    border-color: #3490dc;
+  }
+  
+  /* Adding a focus style */
+  ._input:focus {
+    border-color: #3490dc;
+  }
