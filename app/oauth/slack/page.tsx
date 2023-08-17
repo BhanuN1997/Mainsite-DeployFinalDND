@@ -1,12 +1,15 @@
 "use client"
-import { useSlackStore } from "@/store/slackStore";
+import { SlackOAuthCode, useSlackStore } from "@/store/slackStore";
 import {  useSearchParams } from "next/navigation";
 
 export default function SlackAuth(){
     const {OAuthCode,setOAuthCode}=useSlackStore()
     const searchParams=useSearchParams();
     const code=searchParams.get("code")
-    setOAuthCode(code!)
+    const slackCode:SlackOAuthCode={
+        OAuthCode:code!
+    }
+    setOAuthCode(slackCode)
     //localStorage.setItem("slackCode",code)
     return (
         <div>
