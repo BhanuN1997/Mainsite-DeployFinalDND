@@ -17,8 +17,8 @@ export default function SlackAction() {
 
     fetchwebhook()
     
-  },[OAuthCode])
-  useEffect(()=>{
+  },[OAuthCode]) 
+   useEffect(()=>{
       if(redditPost && webhook){
         const data:RedditPost=redditPost
         sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
@@ -26,12 +26,12 @@ export default function SlackAction() {
       }
         
   },[redditPost])
-
+ 
   
   return (
     <div>
       {(OAuthCode==undefined)?
-      <a href="https://slack.com/oauth/v2/authorize?client_id=4356450523381.5719716288896&scope=incoming-webhook&user_scope=" target="_blank"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+      <a target="_blank" href="https://slack.com/oauth/v2/authorize?client_id=5721061853841.5732156520288&scope=incoming-webhook&user_scope="><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
         :
         <p>Authenticated!</p>
       }

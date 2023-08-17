@@ -5,9 +5,8 @@ const store=(set:any) => ({
   OAuthCode: null, // Initial state is empty string
 
   // Update function to update the slack oauth code
-  setOAuthCode: (code:SlackOAuthCode) => {
-    set({ OAuthCode: code });
-  },
+  setOAuthCode: (code:SlackOAuthCode) => set({ OAuthCode: code })
+  
 })
 export const useSlackStore = create(store);
 
