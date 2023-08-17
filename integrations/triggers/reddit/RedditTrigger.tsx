@@ -1,6 +1,8 @@
+import { redditCronJob } from "@/integrations/cronjobs/reddit/reddit";
 import React from "react";
 
-export default function RedditTrigger(props) {
+export default function RedditTrigger({inputRef,data}) {
+  
   return (
     <div>
         <div className="">
@@ -9,7 +11,7 @@ export default function RedditTrigger(props) {
             <input
               id="text"
               name="text"
-              ref={props.inputRef}
+              ref={inputRef}
               className="_input"
               type="text"
             />
@@ -21,8 +23,9 @@ export default function RedditTrigger(props) {
              className=" purple_gradient button_padding"
              type="submit"
              onClick={() => {
-               props.data.text = props.inputRef.current.value;
-               props.data.triggertype = "reddit";
+              console.log(inputRef.current.value)
+              redditCronJob(inputRef.current.value)
+               data.triggertype = "reddit";
                console.log("Clicked");
              }}
                >
