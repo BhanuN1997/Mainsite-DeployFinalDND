@@ -20,7 +20,7 @@ export async function sendSlackMsg(webhook:URL,value:String){
 export async function getwebhook(code:String){
   console.log(code)
   const res=await fetch('https://slack.com/api/oauth.v2.access',{ 
-    body:`client_id=4356450523381.5719716288896&client_secret=5f19ad974726c860cf3da282a257b44c&code=${code}`,
+    body:`client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&code=${code}`,
     headers : {
       "Content-Type": 'application/x-www-form-urlencoded',
       },
