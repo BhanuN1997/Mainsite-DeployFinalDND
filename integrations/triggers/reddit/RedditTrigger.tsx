@@ -1,7 +1,7 @@
 import { redditCronJob } from "@/integrations/cronjobs/reddit/reddit";
 import React from "react";
 
-export default function RedditTrigger({inputRef,data}) {
+export default function RedditTrigger({inputRef,data}:any) {
   
   return (
     <div>
