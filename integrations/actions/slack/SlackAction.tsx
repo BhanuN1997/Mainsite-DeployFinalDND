@@ -5,8 +5,11 @@ export default function SlackAction() {
   const {redditPost,updateRedditPost}=useRedditPostStore();
   useEffect(
     ()=>{
-      const data=redditPost
-      console.log(data)
+      if(redditPost){
+        const data=redditPost
+        console.log(data)
+      }
+        
   },[redditPost])
 
   
