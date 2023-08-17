@@ -1,8 +1,8 @@
 "use client";
 import { Handle, Position } from "reactflow";
 import { useRef, useState } from "react";
-import RedditTrigger from "@/integrations/triggers/RedditTrigger";
-import GmailTrigger from "@/integrations/triggers/GmailTrigger";
+import RedditTrigger from "@/integrations/triggers/reddit/RedditTrigger";
+import GmailTrigger from "@/integrations/triggers/gmail/GmailTrigger";
 
 export default function TriggerNode({data}:{data:any}) {
   const inputRef = useRef<HTMLInputElement>(null!);
