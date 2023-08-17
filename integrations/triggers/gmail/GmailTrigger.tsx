@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function GmailTrigger(props) {
+export default function GmailTrigger(props:any) {
   return (
     <>
       <div className="_flex _col _gap_16px ">

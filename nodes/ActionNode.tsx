@@ -30,7 +30,7 @@ export default function ActionNode({data}:{data:any}) {
         {(()=>{
                 switch(selected){
                     case 'slack':
-                        return <SlackAction data={data} />
+                        return <SlackAction/>
                 }
             })()}
       </div>

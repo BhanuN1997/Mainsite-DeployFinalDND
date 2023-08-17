@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { useRedditPostStore } from "@/store/redditStore";
+import { RedditPost, useRedditPostStore } from "@/store/redditStore";
 import { useSlackStore } from "@/store/slackStore";
 import { getwebhook, sendSlackMsg } from "./slack";
 
@@ -20,7 +20,7 @@ export default function SlackAction() {
   },[OAuthCode])
   useEffect(()=>{
       if(redditPost && webhook){
-        const data=redditPost
+        const data:RedditPost=redditPost
         sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
         console.log(data)
       }
