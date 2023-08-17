@@ -10,8 +10,9 @@ export default function SlackAuth(){
     const slackCode:SlackOAuthCode={
         OAuthCode:code!
     }
+    console.log(slackCode)
     setOAuthCode(slackCode) 
-    //localStorage.setItem("slackCode",code)
+    localStorage.setItem("slackCode",code!)
     return (
         <div>
             <div>You have successfully added Slack!</div>
