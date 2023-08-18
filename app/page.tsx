@@ -1,6 +1,6 @@
 "use client";
 import "reactflow/dist/style.css";
-
+import shallow from 'zustand/shallow';
 import ReactFlow, {
   Controls,
   Edge,
@@ -8,7 +8,7 @@ import ReactFlow, {
   Viewport,
   ReactFlowProvider,
 } from "reactflow";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import ActionNode from "@/nodes/ActionNode";
 import TriggerNode from "@/nodes/TriggerNode";
 import ButtonEdge from "@/components/reactflow/ButtonEdge";
@@ -35,7 +35,8 @@ const initialEdges = [
 ];
 
 export default function Home() {
-  const { edges, nodes,onConnect,onEdgesChange,onNodesChange } = RFStore.getState();
+
+  const { edges, nodes,onConnect,onEdgesChange,onNodesChange } =RFStore()
   useEffect(() => {
     // This effect will run whenever the 'nodes' array changes in the store
     console.log("Nodes have changed:", nodes);
@@ -59,10 +60,11 @@ export default function Home() {
     <div className="grow">
       <ReactFlowProvider>
         <ReactFlow
-          defaultNodes={nodes}
-          defaultEdges={edges}
+          nodes={nodes}
+          edges={edges}
           onEdgesChange={onEdgesChange}
           onNodesChange={onNodesChange}
+          onConnect={onConnect}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           fitView

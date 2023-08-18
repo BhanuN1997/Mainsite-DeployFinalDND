@@ -51,6 +51,7 @@ const RFStore = create<RFState>((set, get) => ({
         position: { x: 500, y: state.nodes.length * 500 },
         type: type,
       };
+      console.log(newNode)
       const data = [...state.nodes,newNode]
       console.log("addnode called")
       return {
