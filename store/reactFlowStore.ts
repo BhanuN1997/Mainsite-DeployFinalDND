@@ -70,35 +70,79 @@ const RFStore = create<RFState>((set, get) => ({
       const currEdge: Edge = state.edges.find((edge) => id === edge.id);
       const srcNodeId = currEdge.source;
       const targetNodeId = currEdge.target;
-
+  
       const sourceNode = state.nodes.find((node) => node.id === srcNodeId);
       let targetNode = state.nodes.find((node) => node.id === targetNodeId);
-      const newNode = {
-        id: `${state.nodes.length + 1}`,
-        data: {
-          text: undefined,
-        },
-        position: targetNode.position,
-        type: type,
-      };
-      targetNode = {
-        ...targetNode,
-        position: { x: 250, y: newNode.position.y + 500 },
-      };
-
-      console.log(newNode);
-      const data = [
-        ...state.nodes.filter((node) => node.id !== targetNode.id),
-        newNode,
-        targetNode,
-      ];
-      console.log(data);
-      state.removeEdge(currEdge.id);
-      state.addEdge(srcNodeId, newNode.id);
-      state.addEdge(newNode.id, targetNodeId);
-      return {
-        nodes: data,
-      };
+  
+      if (sourceNode.type === "llm" && type === "action") {
+        // Create two new action nodes
+        const newNodeLeft: Node = {
+          id: `action-${state.nodes.length + 1}`,
+          data: {
+            text: undefined,
+          },
+          position: {
+            x: sourceNode.position.x - 200,  // Adjust the x position as needed
+            y: sourceNode.position.y + 200,  // Adjust the y position as needed
+          },
+          type: "action",
+        };
+  
+        const newNodeRight: Node = {
+          id: `action-${state.nodes.length + 2}`,
+          data: {
+            text: undefined,
+          },
+          position: {
+            x: sourceNode.position.x + 200,  // Adjust the x position as needed
+            y: sourceNode.position.y + 200,  // Adjust the y position as needed
+          },
+          type: "action",
+        };
+  
+        // Add the new action nodes and edges
+        const data = [
+          ...state.nodes,
+          newNodeLeft,
+          newNodeRight,
+        ];
+  
+        state.addEdge(srcNodeId, newNodeLeft.id);
+        state.addEdge(srcNodeId, newNodeRight.id);
+  
+        return {
+          nodes: data,
+        };
+      } else {
+        // Continue the linear chain behavior
+        const newNode = {
+          id: `${state.nodes.length + 1}`,
+          data: {
+            text: undefined,
+          },
+          position: targetNode.position,
+          type: type,
+        };
+  
+        targetNode = {
+          ...targetNode,
+          position: { x: 250, y: newNode.position.y + 500 },
+        };
+  
+        const data = [
+          ...state.nodes.filter((node) => node.id !== targetNode.id),
+          newNode,
+          targetNode,
+        ];
+  
+        state.removeEdge(currEdge.id);
+        state.addEdge(srcNodeId, newNode.id);
+        state.addEdge(newNode.id, targetNodeId);
+  
+        return {
+          nodes: data,
+        };
+      }
     });
   },
 }));
