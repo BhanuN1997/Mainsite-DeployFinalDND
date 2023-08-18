@@ -34,6 +34,8 @@ export default function ActionNode({data}:{data:any}) {
                 }
             })()}
       </div>
+      <Handle type="source" position={Position.Bottom} />
+
     </div>
   );
 }

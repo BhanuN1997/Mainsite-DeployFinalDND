@@ -83,7 +83,7 @@ const RFStore = create<RFState>((set, get) => ({
       };
       targetNode = {
         ...targetNode,
-        position: { x: 500, y: newNode.position.y + 500 },
+        position: { x: 250, y: newNode.position.y + 500 },
       };
 
       console.log(newNode);
