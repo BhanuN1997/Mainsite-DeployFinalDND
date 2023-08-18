@@ -1,8 +1,10 @@
 import Navbar from "@/components/Navbar";
+import '../tailwind.config'
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import StoreInitializer from "@/components/StoreInitializer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-[100vh] flex flex-col`}>
         {" "}
         <Navbar />
+        <StoreInitializer/>
         <div className="flex grow">
           <div className="min-w-[250px] border-r-2 border-gray-300">
             <Sidebar />

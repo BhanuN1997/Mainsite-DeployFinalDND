@@ -20,7 +20,7 @@ export default function RedditTrigger({inputRef,data}:any) {
         </div>
          <div className="_flex justify_center margin_8px ">
              <button
-             className=" purple_gradient button_padding"
+             className=" button"
              type="submit"
              onClick={() => {
               console.log(inputRef.current.value)
