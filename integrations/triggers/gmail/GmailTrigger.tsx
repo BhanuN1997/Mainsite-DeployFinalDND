@@ -1,4 +1,6 @@
 import React from "react";
+import { getgmailinbox , ImapConf} from "./server";
+import { GmailCronJob } from "@/integrations/cronjobs/gmail/gmail";
 
 export default function GmailTrigger(props:any) {
   return (
@@ -35,6 +37,8 @@ export default function GmailTrigger(props:any) {
             props.data.email = props.emailInputRef.current.value;
             props.data.password = props.passwordInputRef.current.value;
             props.data.triggertype = "gmail";
+            
+            GmailCronJob(props.data.email,props.data.password)
             console.log("Clicked");
           }}
         >

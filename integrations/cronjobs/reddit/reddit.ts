@@ -4,8 +4,6 @@ import { useRedditPostStore } from "@/store/redditStore";
 import { getredditdata } from "@/integrations/triggers/reddit/server";
 
 export function redditCronJob(endpoint: string) {
-  //let {redditPost,updateRedditPost}=useRedditPostStore();
-  //const updateRedditPost=useRedditPostStore(store=>store.updateRedditPost)
   async function getData() {
     if (endpoint) {
       const response = await getredditdata(endpoint);

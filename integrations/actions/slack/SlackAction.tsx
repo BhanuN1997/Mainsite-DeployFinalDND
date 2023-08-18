@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { RedditPost, useRedditPostStore } from "@/store/redditStore";
 import { useSlackStore } from "@/store/slackStore";
 import { getwebhook, sendSlackMsg } from "./server";
+import { GmailData, useGmailStore } from "@/store/gmailStore";
 
 export default function SlackAction() {
   const redditPost=useRedditPostStore(state=>state.redditPost)
+  const gmailData=useGmailStore(state=>state.gmailData)
   const OAuthCode=localStorage.getItem("slackCode")//useSlackStore(state=>state.OAuthCode)
   const [webhook,setWebhook]=useState("")
   useEffect(()=>{
@@ -22,6 +24,7 @@ export default function SlackAction() {
     }
     fetchwebhook()  
   },[OAuthCode]) 
+
    useEffect(()=>{
     console.log(OAuthCode)
     console.log(webhook)
@@ -30,8 +33,13 @@ export default function SlackAction() {
         sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
         console.log(data)
       }
+
+      if(gmailData && webhook){
+        const data:GmailData=gmailData
+        sendSlackMsg(new URL(webhook),`New Email from: ${data.author}\n subject: ${data.subject}`)
+      }
         
-  },[redditPost])
+  },[redditPost,gmailData])
  
   
   return (

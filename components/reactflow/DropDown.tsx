@@ -27,9 +27,9 @@ export default function DropDown({isOpen}:{isOpen:boolean}) {
           cursor: 'pointer',
           transition: 'background-color 0.3s',
         }}
-        onClick={(e) => console.log(e.target.innerText)}
-        onMouseEnter={(e) => (e.target.style.backgroundColor = 'purple')}
-        onMouseLeave={(e) => (e.target.style.backgroundColor = 'white')}
+        onClick={(e:any) => console.log(e.target.innerText)}
+        onMouseEnter={(e:any) => (e.target.style.backgroundColor = 'purple')}
+        onMouseLeave={(e:any) => (e.target.style.backgroundColor = 'white')}
       >
         Trigger
       </div>
@@ -46,8 +46,8 @@ export default function DropDown({isOpen}:{isOpen:boolean}) {
           marginTop: '8px',
           marginBottom: '8px',
         }}
-        onMouseEnter={(e) => (e.target.style.backgroundColor = 'purple')}
-        onMouseLeave={(e) => (e.target.style.backgroundColor = 'white')}
+        onMouseEnter={(e:any) => (e.target.style.backgroundColor = 'purple')}
+        onMouseLeave={(e:any) => (e.target.style.backgroundColor = 'white')}
       >
         Action
       </div>
@@ -62,8 +62,8 @@ export default function DropDown({isOpen}:{isOpen:boolean}) {
           cursor: 'pointer',
           transition: 'background-color 0.3s',
         }}
-        onMouseEnter={(e) => (e.target.style.backgroundColor = 'purple')}
-        onMouseLeave={(e) => (e.target.style.backgroundColor = 'white')}
+        onMouseEnter={(e:any) => (e.target.style.backgroundColor = 'purple')}
+        onMouseLeave={(e:any) => (e.target.style.backgroundColor = 'white')}
       >
         LLM
       </div>
