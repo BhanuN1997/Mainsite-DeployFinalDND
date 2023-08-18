@@ -82,7 +82,7 @@ const RFStore = create<RFState>((set, get) => ({
             text: undefined,
           },
           position: {
-            x: sourceNode.position.x - 200,  // Adjust the x position as needed
+            x: sourceNode.position.x - 600,  // Adjust the x position as needed
             y: sourceNode.position.y + 200,  // Adjust the y position as needed
           },
           type: "action",
@@ -94,7 +94,7 @@ const RFStore = create<RFState>((set, get) => ({
             text: undefined,
           },
           position: {
-            x: sourceNode.position.x + 200,  // Adjust the x position as needed
+            x: sourceNode.position.x + 600,  // Adjust the x position as needed
             y: sourceNode.position.y + 200,  // Adjust the y position as needed
           },
           type: "action",
