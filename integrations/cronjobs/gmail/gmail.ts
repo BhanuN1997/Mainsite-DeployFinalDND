@@ -18,13 +18,17 @@ export function GmailCronJob(email:string,password:string){
         const {gmailData,setGmailStore}=state
 
         const data:any=await getgmailinbox(cfg)
-        console.log(data)
+
+        
         const newgmailData:GmailData={
             author:data.from.text,
             subject:data.subject,
             body:data.text
         }
-        setGmailStore(newgmailData)
+        if(gmailData!=newgmailData){
+          setGmailStore(newgmailData)
+        }
+        
       }
       setInterval(getData,12000)
 }

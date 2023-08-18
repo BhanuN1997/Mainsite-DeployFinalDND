@@ -35,7 +35,7 @@ export async function getgmailinbox(imapConfig:ImapConf) {
                                     reject(err);
                                     return;
                                 }
-                                console.log(parsed)
+                                
                                 resolve(parsed);
                             });
                         });

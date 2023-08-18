@@ -11,6 +11,7 @@ async function classifyData(model:OpenAI,data:string){
     const chain=new LLMChain({ llm: model, prompt: prompt})
     const output = await chain.call({ data })
     console.log(output)
+    return output.text
 }
 
 export async function sendOpenAIRequest(apiKey:string,data:string){
@@ -20,6 +21,7 @@ export async function sendOpenAIRequest(apiKey:string,data:string){
     switch(option){
         case 'classify':
             console.log('inside classify')
-            await classifyData(model,data)
+            const output=await classifyData(model,data)
+            return output
     }
 }

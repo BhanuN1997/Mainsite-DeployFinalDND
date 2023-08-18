@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { sendOpenAIRequest } from "./openai";
+import { useGmailStore } from "@/store/gmailStore";
+import { OpenAIData, useOpenAIStore } from "@/store/openAIStore";
 
 export default function OpenAI() {
   const handleChange = async (e) => {
@@ -8,9 +11,28 @@ export default function OpenAI() {
     option = e.target.value;
   };
   const [apiKey, setApiKey] = useState("");
+  const setOpenAIData=useOpenAIStore(state=>state.setOpenAIData)
+  const gmailData=useGmailStore(state=>state.gmailData)
   let option;
 
-  console.log("uwuwu");
+  useEffect(()=>{
+    async function fetchOpenAIData(){
+      
+      if(apiKey){
+        console.log(gmailData)
+          const data=await sendOpenAIRequest(apiKey,gmailData.body)
+          const openaiData:OpenAIData={
+            data:data
+          }
+          setOpenAIData(openaiData)
+          console.log(data)
+      }
+        
+    }
+
+    fetchOpenAIData()
+    
+  },[apiKey,gmailData])
 
   return (
     <div className="flex flex-col _text _gap_8px _ml_8px">
