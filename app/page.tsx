@@ -13,6 +13,7 @@ import ActionNode from "@/nodes/ActionNode";
 import TriggerNode from "@/nodes/TriggerNode";
 import ButtonEdge from "@/components/reactflow/ButtonEdge";
 import RFStore from "@/store/reactFlowStore";
+import LLMNode from "@/nodes/LLMNode";
 
 const defaultViewPort: Viewport = { x: 0, y: 0, zoom: 1.5 };
 
@@ -28,6 +29,7 @@ export default function Home() {
     () => ({
       trigger: TriggerNode,
       action: ActionNode,
+      llm:LLMNode
     }),
     []
   );

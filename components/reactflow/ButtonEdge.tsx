@@ -62,7 +62,7 @@ export default function ButtonEdge({
           <button
             className="edgebutton bg-purple-300 border border-purple-400  p-2 hover:bg-purple-400 focus:outline-none flex justify-center items-center"
             onClick={(event) => {
-              addNode('default',id)
+              setIsOpen((prevState)=>!prevState)
               console.log(nodes)
              console.log(edges)
             }
@@ -71,7 +71,7 @@ export default function ButtonEdge({
             &#43;
           </button>
 
-          <DropDown isOpen={isOpen} />
+          <DropDown isOpen={isOpen} id={id} />
         </div>
       </EdgeLabelRenderer>
     </>
