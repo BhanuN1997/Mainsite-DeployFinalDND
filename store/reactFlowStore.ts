@@ -20,6 +20,7 @@ type RFState = {
   onEdgesChange: OnEdgesChange;
   onConnect: OnConnect;
   addNode: (type: string) => void;
+  addEdge:(sourceId:string,targetId:string)=>void;
 };
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -40,6 +41,20 @@ const RFStore = create<RFState>((set, get) => ({
     set({
       edges: addEdge(connection, get().edges),
     });
+  },
+  addEdge:(sourceId:string,targetId:string)=>{
+    set((state)=>{
+      const newEdge:Edge={
+        id:`${sourceId}-${targetId}`,
+        source:sourceId,
+        target:targetId,
+        type: 'buttonedge'
+      }
+      const data=[...state.edges,newEdge]
+      return {
+        edges:data
+      }
+    })
   },
   addNode: (type: string) => {
     set((state) => {
