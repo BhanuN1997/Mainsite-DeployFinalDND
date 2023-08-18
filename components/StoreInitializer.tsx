@@ -2,6 +2,7 @@
 import RFStore from "@/store/reactFlowStore";
 import { useRef } from "react";
 import { Edge } from "reactflow";
+import { Node } from "reactflow";
 export default function StoreInitializer() {
   const initialized = useRef(false);
 
