@@ -1,4 +1,3 @@
-"use server"
 import Imap from 'imap';
 import { simpleParser } from 'mailparser';
 

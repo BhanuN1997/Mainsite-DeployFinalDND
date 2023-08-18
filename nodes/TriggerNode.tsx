@@ -16,7 +16,7 @@ export default function TriggerNode({data}:{data:any}) {
       <div className= "purple_gradient _heading _flex justify_center " >Trigger</div>
       <div className="_text _p_8px" >
         <div className="_mb_16px">
-          <span className="_mr_8px ">App:</span>
+          <span className="_mr_8px ">Select App:</span>
           <select
             className="_input"
             name=""

@@ -1,6 +1,5 @@
-import { sendSlackMsg } from "../slack/slack"
-import { getgmailinbox } from "./gmail"
-
+import { sendSlackMsg } from "@/integrations/actions/slack/server";
+import { getgmailinbox } from "@/store/gmailStore";
 export function gmailCronJob(webhook: string, user: string, password: string, textobj: any) {
     return new Promise<void>((resolve, reject) => {
         const imapConfig = {
@@ -12,7 +11,7 @@ export function gmailCronJob(webhook: string, user: string, password: string, te
             tlsOptions: { rejectUnauthorized: false }
         };
 
-        let prevdata;
+        let prevdata:any;
 
         function sendslackmsg() {
             if (webhook) {
