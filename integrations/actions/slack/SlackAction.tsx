@@ -25,12 +25,14 @@ export default function SlackAction({classify}) {
       
     }
     fetchwebhook()  
-  },[OAuthCode]) 
+  },[]) 
 
    useEffect(()=>{
     console.log(webhook)
-
-    if(openAIData.data.contains("1") && classify==="yes" && webhook){
+    if(!openAIData){
+      return;
+    }
+    if(openAIData.data.includes("1") && classify==="yes" && webhook){
       
       //do something
       if(gmailData){
@@ -38,13 +40,14 @@ export default function SlackAction({classify}) {
         sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said yes ${data.author} \n subject ${data.subject}`)
       }
       
-    }else if(openAIData.data.contains("0") && classify==="no" && webhook){
+    }
+    else if(openAIData.data.includes("0") && classify==="no" && webhook){
       if(gmailData){
         const data:GmailData=gmailData
         sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said no ${data.author} \n subject ${data.subject}`)
       }
     }
-      if(redditPost && webhook){
+      /* if(redditPost && webhook){
         const data:RedditPost=redditPost
         sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
         console.log(data)
@@ -53,7 +56,7 @@ export default function SlackAction({classify}) {
       if(gmailData && webhook){
         const data:GmailData=gmailData
         sendSlackMsg(new URL(webhook),`New Email from: ${data.author}\n subject: ${data.subject}`)
-      }
+      } */
         
   },[redditPost,gmailData])
  
