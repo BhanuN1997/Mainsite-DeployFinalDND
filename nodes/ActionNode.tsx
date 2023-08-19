@@ -5,6 +5,7 @@ import SlackAction from "@/integrations/actions/slack/SlackAction";
 
 export default function ActionNode({data}:{data:any}) {
   const [selected, setSelected] = useState("");
+  const [classify,setClassify]=useState("no");
   const onSelect = (event: any) => {
     setSelected(event.target.value);
   };
@@ -27,10 +28,25 @@ export default function ActionNode({data}:{data:any}) {
           <option value="none">None</option>
           <option value="slack">Slack</option>
         </select>
+        <div style={{ display: data.parentType === "llm" ? "block" : "none" }}>
+          <div className="_mt_16px">
+            <span className="_mr_8px ">Classify:</span>
+            <select
+              className="_input"
+              name=""
+              id=""
+              onChange={(e)=>setClassify(e.target.value)}
+              defaultValue={classify}
+            >
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+        </div>
         {(()=>{
                 switch(selected){
                     case 'slack':
-                        return <SlackAction/>
+                        return <SlackAction classify={classify}/>
                 }
             })()}
       </div>

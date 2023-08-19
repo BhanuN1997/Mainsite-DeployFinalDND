@@ -79,7 +79,7 @@ const RFStore = create<RFState>((set, get) => ({
         const newNodeLeft: Node = {
           id: `action-${state.nodes.length + 1}`,
           data: {
-            text: undefined,
+            parentType:sourceNode.type,
           },
           position: {
             x: sourceNode.position.x - 600,  // Adjust the x position as needed
@@ -91,7 +91,7 @@ const RFStore = create<RFState>((set, get) => ({
         const newNodeRight: Node = {
           id: `action-${state.nodes.length + 2}`,
           data: {
-            text: undefined,
+            parentType:sourceNode.type,
           },
           position: {
             x: sourceNode.position.x + 600,  // Adjust the x position as needed

@@ -4,10 +4,12 @@ import { RedditPost, useRedditPostStore } from "@/store/redditStore";
 import { useSlackStore } from "@/store/slackStore";
 import { getwebhook, sendSlackMsg } from "./server";
 import { GmailData, useGmailStore } from "@/store/gmailStore";
+import { useOpenAIStore } from "@/store/openAIStore";
 
-export default function SlackAction() {
+export default function SlackAction({classify}) {
   const redditPost=useRedditPostStore(state=>state.redditPost)
   const gmailData=useGmailStore(state=>state.gmailData)
+  const openAIData=useOpenAIStore(store=>store.openAIData)
   const OAuthCode=localStorage.getItem("slackCode")//useSlackStore(state=>state.OAuthCode)
   const [webhook,setWebhook]=useState("")
   useEffect(()=>{
@@ -26,8 +28,22 @@ export default function SlackAction() {
   },[OAuthCode]) 
 
    useEffect(()=>{
-    console.log(OAuthCode)
     console.log(webhook)
+
+    if(openAIData.data.contains("1") && classify==="yes" && webhook){
+      
+      //do something
+      if(gmailData){
+        const data:GmailData=gmailData
+        sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said yes ${data.author} \n subject ${data.subject}`)
+      }
+      
+    }else if(openAIData.data.contains("0") && classify==="no" && webhook){
+      if(gmailData){
+        const data:GmailData=gmailData
+        sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said no ${data.author} \n subject ${data.subject}`)
+      }
+    }
       if(redditPost && webhook){
         const data:RedditPost=redditPost
         sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
