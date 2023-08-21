@@ -3,9 +3,14 @@ import { Handle, Position } from "reactflow";
 import { useState } from "react";
 import OpenAI from "@/integrations/llms/openai/OpenAI";
 import Ai21 from "@/integrations/llms/ai21/Ai21";
+import RFStore from "@/store/reactFlowStore";
 
-export default function LLMNode() {
+export default function LLMNode({id}) {
   const [selected, setSelected] = useState("");
+  const {removeNodeAndEdges} = RFStore.getState()
+  const handleRemoveNode = () => {
+      removeNodeAndEdges(id)
+  };
  
   return (
     <div className="node_container drop_shadow_md">
@@ -30,7 +35,10 @@ export default function LLMNode() {
             return <Ai21/>
         }
       })()}
+        
       <Handle type="source" position={Position.Bottom} id="a" />
+      <button  className="button"onClick={handleRemoveNode}>Remove Node</button>
+
     </div>
   );
 }
