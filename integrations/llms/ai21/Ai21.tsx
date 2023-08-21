@@ -4,7 +4,7 @@ import { sendAI21Request } from "./ai21"
 import { useGmailStore } from "@/store/gmailStore"
 import { AIData, useAIStore } from "@/store/AIStore";
 
-export default function OpenAI() {
+export default function Ai21() {
     const handleChange = async (e) => {
       //process logic here
       option = e.target.value;
@@ -12,6 +12,7 @@ export default function OpenAI() {
     const [apiKey, setApiKey] = useState("");
     const setAI21Data=useAIStore(state=>state.setAIData)
     const gmailData=useGmailStore(state=>state.gmailData)
+    const [prompt,setPrompt] = useState('')
     let option;
   
     useEffect(()=>{
@@ -19,7 +20,7 @@ export default function OpenAI() {
         
         if(apiKey){
           console.log(gmailData)
-            const data=await sendAI21Request(apiKey,gmailData.body)
+            const data=await sendAI21Request(apiKey,gmailData.body,prompt)
             const ai21Data:AIData={
               data:data
             }
@@ -47,10 +48,9 @@ export default function OpenAI() {
         </label>
   
         <br />
-        <label htmlFor="prompts">Prompts: <select className="_input" name="prompts" id="prompts" onChange={handleChange}>
-          <option value="none">None</option>
-          <option value="classify">Classify</option>
-        </select></label>
+        <label htmlFor="prompts">Prompts: <textarea className="_input" name="prompts" id="prompts" onChange={(e)=>{setPrompt(e.target.value)}}>
+         
+        </textarea></label>
         
       </div>
     );
