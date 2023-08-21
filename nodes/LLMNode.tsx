@@ -2,6 +2,7 @@ import React from "react";
 import { Handle, Position } from "reactflow";
 import { useState } from "react";
 import OpenAI from "@/integrations/llms/openai/OpenAI";
+import Ai21 from "@/integrations/llms/ai21/Ai21";
 
 export default function LLMNode() {
   const [selected, setSelected] = useState("");
@@ -15,6 +16,7 @@ export default function LLMNode() {
         <select className="_input" name="" id="" defaultValue="none" onChange={(e:any)=>{setSelected(e.target.value)}}>
           <option value="none">None</option>
           <option value="openai">OpenAI</option>
+          <option value='ai21'>AI21</option>
         </select>
         <br />
       </div>
@@ -24,6 +26,8 @@ export default function LLMNode() {
           
           case "openai":
             return <OpenAI/>;
+          case "ai21":
+            return <Ai21/>
         }
       })()}
       <Handle type="source" position={Position.Bottom} id="a" />

@@ -12,6 +12,7 @@ export default function OpenAI() {
   const [apiKey, setApiKey] = useState("");
   const setOpenAIData=useAIStore(state=>state.setAIData)
   const gmailData=useGmailStore(state=>state.gmailData)
+  const [prompt,setPrompt] = useState('')
   let option;
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ export default function OpenAI() {
       
       if(apiKey){
         console.log(gmailData)
-          const data=await sendOpenAIRequest(apiKey,gmailData.body)
+          const data=await sendOpenAIRequest(apiKey,gmailData.body,prompt)
           const openaiData:AIData={
             data:data
           }
@@ -47,10 +48,9 @@ export default function OpenAI() {
       </label>
 
       <br />
-      <label htmlFor="prompts">Prompts: <select className="_input" name="prompts" id="prompts" onChange={handleChange}>
-        <option value="none">None</option>
-        <option value="classify">Classify</option>
-      </select></label>
+      <label htmlFor="prompts">Prompts: <textarea className="_input" name="prompts" onChange={(e)=>{setPrompt(e.target.value)}} id="prompts" >
+        
+      </textarea></label>
       
     </div>
   );
