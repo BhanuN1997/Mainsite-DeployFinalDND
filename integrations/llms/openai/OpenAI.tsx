@@ -1,9 +1,8 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import { sendOpenAIRequest } from "./openai";
-import { useGmailStore } from "@/store/gmailStore";
-import { OpenAIData, useOpenAIStore } from "@/store/openAIStore";
+import { useEffect, useState } from "react"
+import { sendOpenAIRequest } from "./openai"
+import { useGmailStore } from "@/store/gmailStore"
+import { AIData, useAIStore } from "@/store/AIStore"
 
 export default function OpenAI() {
   const handleChange = async (e) => {
@@ -11,7 +10,7 @@ export default function OpenAI() {
     option = e.target.value;
   };
   const [apiKey, setApiKey] = useState("");
-  const setOpenAIData=useOpenAIStore(state=>state.setOpenAIData)
+  const setOpenAIData=useAIStore(state=>state.setAIData)
   const gmailData=useGmailStore(state=>state.gmailData)
   let option;
 
@@ -21,7 +20,7 @@ export default function OpenAI() {
       if(apiKey){
         console.log(gmailData)
           const data=await sendOpenAIRequest(apiKey,gmailData.body)
-          const openaiData:OpenAIData={
+          const openaiData:AIData={
             data:data
           }
           setOpenAIData(openaiData)

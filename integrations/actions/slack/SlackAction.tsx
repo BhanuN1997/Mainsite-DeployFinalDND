@@ -4,12 +4,12 @@ import { RedditPost, useRedditPostStore } from "@/store/redditStore";
 import { useSlackStore } from "@/store/slackStore";
 import { getwebhook, sendSlackMsg } from "./server";
 import { GmailData, useGmailStore } from "@/store/gmailStore";
-import { useOpenAIStore } from "@/store/openAIStore";
+import { useAIStore } from "@/store/AIStore";
 
 export default function SlackAction({classify}) {
   const redditPost=useRedditPostStore(state=>state.redditPost)
   const gmailData=useGmailStore(state=>state.gmailData)
-  const openAIData=useOpenAIStore(store=>store.openAIData)
+  const openAIData=useAIStore(store=>store.AIData)
   const OAuthCode=localStorage.getItem("slackCode")//useSlackStore(state=>state.OAuthCode)
   const [webhook,setWebhook]=useState("")
   useEffect(()=>{
