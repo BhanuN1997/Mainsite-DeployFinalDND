@@ -9,42 +9,31 @@ import { useAIStore } from "@/store/AIStore";
 export default function SlackAction({classify}) {
   const redditPost=useRedditPostStore(state=>state.redditPost)
   const gmailData=useGmailStore(state=>state.gmailData)
-  const openAIData=useAIStore(store=>store.AIData)
+  const AIData=useAIStore(store=>store.AIData)
   const OAuthCode=localStorage.getItem("slackCode")//useSlackStore(state=>state.OAuthCode)
   const [webhook,setWebhook]=useState("")
-  useEffect(()=>{
-    console.log(OAuthCode)
-    async function fetchwebhook(){
-      console.log(OAuthCode)
-      if(OAuthCode)
-      {
-        const w=await getwebhook(OAuthCode)
-        console.log(w)
-        setWebhook(w)
-      }
-      
-    }
-    fetchwebhook()  
-  },[]) 
-
    useEffect(()=>{
-    console.log(webhook)
-    if(!openAIData){
+    setWebhook(OAuthCode)
+    console.log("meow meow"+webhook)
+    console.log(AIData)
+    if(!AIData){
       return;
     }
-    if(openAIData.data.includes("1") && classify==="yes" && webhook){
-      
+    console.log("meow meow",classify)
+    if(AIData.data.includes("1") && classify==="yes" && webhook){
+      console.log("inside ai")
       //do something
       if(gmailData){
+        console.log("inside gmail")
         const data:GmailData=gmailData
-        sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said yes ${data.author} \n subject ${data.subject}`)
+        sendSlackMsg(new URL(webhook),` ${AIData.data} said yes ${data.author} \n subject ${data.subject}`)
       }
       
     }
-    else if(openAIData.data.includes("0") && classify==="no" && webhook){
+    else if(AIData.data.includes("0") && classify==="no" && webhook){
       if(gmailData){
         const data:GmailData=gmailData
-        sendSlackMsg(new URL(webhook),`OpenAI ${openAIData.data} said no ${data.author} \n subject ${data.subject}`)
+        sendSlackMsg(new URL(webhook),`OpenAI ${AIData.data} said no ${data.author} \n subject ${data.subject}`)
       }
     }
       /* if(redditPost && webhook){

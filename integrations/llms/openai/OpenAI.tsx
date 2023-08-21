@@ -10,7 +10,7 @@ export default function OpenAI() {
     option = e.target.value;
   };
   const [apiKey, setApiKey] = useState("");
-  const setOpenAIData=useAIStore(state=>state.setAIData)
+  const setAIData=useAIStore(state=>state.setAIData)
   const gmailData=useGmailStore(state=>state.gmailData)
   const [prompt,setPrompt] = useState('')
   let option;
@@ -24,7 +24,7 @@ export default function OpenAI() {
           const openaiData:AIData={
             data:data
           }
-          setOpenAIData(openaiData)
+          setAIData(openaiData)
           console.log(data)
       }
         

@@ -2,8 +2,8 @@ import {create} from 'zustand';
 
 const store=(set:any)=>({
     AIData:null,
-    setAIData:(newopenAIData)=>{
-        set({openAIData:newopenAIData})
+    setAIData:(AIData)=>{
+        set({AIData:AIData})
     }
 })
 
