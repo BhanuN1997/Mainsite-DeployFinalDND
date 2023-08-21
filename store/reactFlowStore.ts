@@ -22,6 +22,7 @@ type RFState = {
   addNode: (type: string, id: string) => void;
   addEdge: (sourceId: string, targetId: string) => void;
   removeEdge: (id: string) => void;
+  removeNodeAndEdges:(id:string) => void;
 };
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -143,6 +144,22 @@ const RFStore = create<RFState>((set, get) => ({
           nodes: data,
         };
       }
+    });
+  },
+  removeNodeAndEdges: (nodeId: string) => {
+    set((state) => {
+      // Filter out the node to be removed
+      const filteredNodes = state.nodes.filter((node) => node.id !== nodeId);
+
+      // Filter out the edges connected to the removed node
+      const filteredEdges = state.edges.filter(
+        (edge) => edge.source !== nodeId && edge.target !== nodeId
+      );
+
+      return {
+        nodes: filteredNodes,
+        edges: filteredEdges,
+      };
     });
   },
 }));
