@@ -23,6 +23,7 @@ type RFState = {
   addEdge: (sourceId: string, targetId: string) => void;
   removeEdge: (id: string) => void;
   removeNodeAndEdges:(id:string) => void;
+  addNodesAroundLLM: (numnodes:number,nodeId:string) => void;
 };
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -78,7 +79,7 @@ const RFStore = create<RFState>((set, get) => ({
       if (sourceNode.type === "llm" && type === "action") {
         // Create two new action nodes
         const newNodeLeft: Node = {
-          id: `action-${state.nodes.length + 1}`,
+          id: `${state.nodes.length + 1}`,
           data: {
             parentType:sourceNode.type,
           },
@@ -90,7 +91,7 @@ const RFStore = create<RFState>((set, get) => ({
         };
   
         const newNodeRight: Node = {
-          id: `action-${state.nodes.length + 2}`,
+          id: `${state.nodes.length + 2}`,
           data: {
             parentType:sourceNode.type,
           },
@@ -162,6 +163,51 @@ const RFStore = create<RFState>((set, get) => ({
       };
     });
   },
-}));
+  addNodesAroundLLM : (numNodes, llmNodeId) => {
+    set((state) => {
+      const sourceNode = state.nodes.find((node) => node.id === llmNodeId);
+  
+      if (!sourceNode || sourceNode.type !== "llm") {
+        return state; // Return unchanged state if source node is not found or not of type "llm"
+      }
+  
+      const angleIncrement = (2 * Math.PI) / numNodes; // Calculate angle increment for even distribution
+      const radius = 150; // Distance from source node to new nodes
+  
+      const newNodes = [];
+  
+      for (let i = 0; i < numNodes; i++) {
+        const angle = i * angleIncrement;
+        const newNodeId = `${state.nodes.length + i + 1}`;
+  
+        const newNode = {
+          id: newNodeId,
+          data: {
+            parentType: sourceNode.type,
+          },
+          position: {
+            x: sourceNode.position.x + radius * Math.cos(angle),
+            y: sourceNode.position.y + radius * Math.sin(angle),
+          },
+          type: "action",
+        };
+  
+        newNodes.push(newNode);
+      }
+  
+      const updatedNodes = [...state.nodes, ...newNodes];
+      
+      const updatedEdges = [...state.edges]; // Clone the existing edges
+      
+      for (const newNode of newNodes) {
+        updatedEdges.push({ id: `${llmNodeId}-${newNode.id}`, source: llmNodeId, target: newNode.id ,type:'buttonedge'});
+      }
+  
+      return {
+        nodes: updatedNodes,
+        edges: updatedEdges,
+      };
+    });
+}}));
 
 export default RFStore;

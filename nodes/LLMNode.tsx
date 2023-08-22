@@ -4,6 +4,7 @@ import { useState } from "react";
 import OpenAI from "@/integrations/llms/openai/OpenAI";
 import Ai21 from "@/integrations/llms/ai21/Ai21";
 import RFStore from "@/store/reactFlowStore";
+import AddNodesForm from "@/components/reactflow/AddNodesForm";
 
 export default function LLMNode({id}) {
   const [selected, setSelected] = useState("");
@@ -38,6 +39,8 @@ export default function LLMNode({id}) {
         
       <Handle type="source" position={Position.Bottom} id="a" />
       <button  className="button"onClick={handleRemoveNode}>Remove Node</button>
+      <AddNodesForm llmnodeId={id}/>
+      
 
     </div>
   );
