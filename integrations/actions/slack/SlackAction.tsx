@@ -36,16 +36,6 @@ export default function SlackAction({classify}) {
         sendSlackMsg(new URL(webhook),`OpenAI ${AIData.data} said no ${data.author} \n subject ${data.subject}`)
       }
     }
-      /* if(redditPost && webhook){
-        const data:RedditPost=redditPost
-        sendSlackMsg(new URL(webhook),`New post made by ${data.author} \n link: ${data.url}`)
-        console.log(data)
-      }
-
-      if(gmailData && webhook){
-        const data:GmailData=gmailData
-        sendSlackMsg(new URL(webhook),`New Email from: ${data.author}\n subject: ${data.subject}`)
-      } */
         
   },[redditPost,gmailData])
  

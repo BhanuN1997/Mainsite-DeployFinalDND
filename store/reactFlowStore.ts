@@ -170,31 +170,29 @@ const RFStore = create<RFState>((set, get) => ({
       if (!sourceNode || sourceNode.type !== "llm") {
         return state; // Return unchanged state if source node is not found or not of type "llm"
       }
-  
-      const angleIncrement = (2 * Math.PI) / numNodes; // Calculate angle increment for even distribution
-      const radius = 150; // Distance from source node to new nodes
-  
-      const newNodes = [];
-  
-      for (let i = 0; i < numNodes; i++) {
-        const angle = i * angleIncrement;
-        const newNodeId = `${state.nodes.length + i + 1}`;
-  
-        const newNode = {
-          id: newNodeId,
-          data: {
-            parentType: sourceNode.type,
-          },
-          position: {
-            x: sourceNode.position.x + radius * Math.cos(angle),
-            y: sourceNode.position.y + radius * Math.sin(angle),
-          },
-          type: "action",
-        };
-  
-        newNodes.push(newNode);
+      const newNodes=[]
+      const numNodesOnEachSide = Math.floor(numNodes / 2);
+      const spacingBetweenNodes = 500; // Adjust this value as needed
+
+      for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide; i++) {
+          const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
+          const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
+
+          const newNode = {
+              id: newNodeId,
+              data: {
+                  parentType: sourceNode.type,
+              },
+              position: {
+                  x: xCoordinate,
+                  y: sourceNode.position.y+500, // Set a constant y-coordinate
+              },
+              type: "action",
+          };
+
+          newNodes.push(newNode);
       }
-  
+
       const updatedNodes = [...state.nodes, ...newNodes];
       
       const updatedEdges = [...state.edges]; // Clone the existing edges
