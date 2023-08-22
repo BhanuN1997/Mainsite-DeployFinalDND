@@ -31,6 +31,8 @@ const Sidebar = () => {
         />
         Saved Templates
       </div>
+
+      
     </aside>
   );
 };
