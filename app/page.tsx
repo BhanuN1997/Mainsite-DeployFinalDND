@@ -16,11 +16,13 @@ import RFStore from "@/store/reactFlowStore";
 import LLMNode from "@/nodes/LLMNode";
 import toast from "react-hot-toast";
 import jwt_decode from "jwt-decode";
+import SaveButton from "@/components/reactflow/SaveButton";
 
 const defaultViewPort: Viewport = { x: 0, y: 0, zoom: 1.5 };
 
 export default function Home() {
 
+ 
 
   useEffect(() => {
     const exchangeCodeForTokens = async () => {
@@ -83,7 +85,15 @@ export default function Home() {
     exchangeCodeForTokens();
   }, []);
   
-  const { edges, nodes,onConnect,onEdgesChange,onNodesChange } =RFStore()
+  const { edges, nodes,onConnect,onEdgesChange,onNodesChange,setGraphState } =RFStore()
+  useEffect(() => {
+    const savedGraphState = localStorage.getItem('graphState');
+    if (savedGraphState) {
+      const parsedGraphState = JSON.parse(savedGraphState);
+      setGraphState(parsedGraphState); // Update the Zustand store with the saved state
+    }
+  }, [setGraphState]);
+
   useEffect(() => {
     // This effect will run whenever the 'nodes' array changes in the store
     console.log("Nodes have changed:", nodes);
@@ -106,6 +116,7 @@ export default function Home() {
   );
   return (
     <div className="grow">
+       <SaveButton/>
       <ReactFlowProvider>
         <ReactFlow
           nodes={nodes}

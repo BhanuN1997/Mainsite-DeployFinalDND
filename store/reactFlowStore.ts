@@ -22,8 +22,9 @@ type RFState = {
   addNode: (type: string, id: string) => void;
   addEdge: (sourceId: string, targetId: string) => void;
   removeEdge: (id: string) => void;
-  removeNodeAndEdges:(id:string) => void;
-  addNodesAroundLLM: (numnodes:number,nodeId:string) => void;
+  removeNodeAndEdges: (id: string) => void;
+  addNodesAroundLLM: (numnodes: number, nodeId: string) => void;
+  setGraphState: (graphState:any) =>void;
 };
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -72,46 +73,42 @@ const RFStore = create<RFState>((set, get) => ({
       const currEdge: Edge = state.edges.find((edge) => id === edge.id);
       const srcNodeId = currEdge.source;
       const targetNodeId = currEdge.target;
-  
+
       const sourceNode = state.nodes.find((node) => node.id === srcNodeId);
       let targetNode = state.nodes.find((node) => node.id === targetNodeId);
-  
+
       if (sourceNode.type === "llm" && type === "action") {
         // Create two new action nodes
         const newNodeLeft: Node = {
           id: `${state.nodes.length + 1}`,
           data: {
-            parentType:sourceNode.type,
+            parentType: sourceNode.type,
           },
           position: {
-            x: sourceNode.position.x - 600,  // Adjust the x position as needed
-            y: sourceNode.position.y + 200,  // Adjust the y position as needed
+            x: sourceNode.position.x - 600, // Adjust the x position as needed
+            y: sourceNode.position.y + 200, // Adjust the y position as needed
           },
           type: "action",
         };
-  
+
         const newNodeRight: Node = {
           id: `${state.nodes.length + 2}`,
           data: {
-            parentType:sourceNode.type,
+            parentType: sourceNode.type,
           },
           position: {
-            x: sourceNode.position.x + 600,  // Adjust the x position as needed
-            y: sourceNode.position.y + 200,  // Adjust the y position as needed
+            x: sourceNode.position.x + 600, // Adjust the x position as needed
+            y: sourceNode.position.y + 200, // Adjust the y position as needed
           },
           type: "action",
         };
-  
+
         // Add the new action nodes and edges
-        const data = [
-          ...state.nodes,
-          newNodeLeft,
-          newNodeRight,
-        ];
-  
+        const data = [...state.nodes, newNodeLeft, newNodeRight];
+
         state.addEdge(srcNodeId, newNodeLeft.id);
         state.addEdge(srcNodeId, newNodeRight.id);
-  
+
         return {
           nodes: data,
         };
@@ -125,22 +122,22 @@ const RFStore = create<RFState>((set, get) => ({
           position: targetNode.position,
           type: type,
         };
-  
+
         targetNode = {
           ...targetNode,
           position: { x: 250, y: newNode.position.y + 500 },
         };
-  
+
         const data = [
           ...state.nodes.filter((node) => node.id !== targetNode.id),
           newNode,
           targetNode,
         ];
-  
+
         state.removeEdge(currEdge.id);
         state.addEdge(srcNodeId, newNode.id);
         state.addEdge(newNode.id, targetNodeId);
-  
+
         return {
           nodes: data,
         };
@@ -163,16 +160,17 @@ const RFStore = create<RFState>((set, get) => ({
       };
     });
   },
-  addNodesAroundLLM : (numNodes, llmNodeId) => {
+  addNodesAroundLLM: (numNodes, llmNodeId) => {
     set((state) => {
       const sourceNode = state.nodes.find((node) => node.id === llmNodeId);
-  
+
       if (!sourceNode || sourceNode.type !== "llm") {
         return state; // Return unchanged state if source node is not found or not of type "llm"
       }
-      const newNodes=[]
+      const newNodes = [];
       const numNodesOnEachSide = Math.floor(numNodes / 2);
       const spacingBetweenNodes = 500; // Adjust this value as needed
+
       for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide && numNodes>newNodes.length; i++) {
           const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
           const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
@@ -191,21 +189,35 @@ const RFStore = create<RFState>((set, get) => ({
           };
 
           newNodes.push(newNode);
+
       }
 
       const updatedNodes = [...state.nodes, ...newNodes];
-      
+
       const updatedEdges = [...state.edges]; // Clone the existing edges
-      
+
       for (const newNode of newNodes) {
-        updatedEdges.push({ id: `${llmNodeId}-${newNode.id}`, source: llmNodeId, target: newNode.id ,type:'buttonedge'});
+        updatedEdges.push({
+          id: `${llmNodeId}-${newNode.id}`,
+          source: llmNodeId,
+          target: newNode.id,
+          type: "buttonedge",
+        });
       }
-  
+
       return {
         nodes: updatedNodes,
         edges: updatedEdges,
       };
     });
-}}));
+  },
+  setGraphState: (graphState) => {
+    set({
+      nodes: graphState.nodes,
+      edges: graphState.edges,
+    });
+  },
+
+}));
 
 export default RFStore;
