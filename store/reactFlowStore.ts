@@ -181,6 +181,7 @@ const RFStore = create<RFState>((set, get) => ({
           const newNode = {
               id: newNodeId,
               data: {
+                  options: numNodes,
                   parentType: sourceNode.type,
               },
               position: {
