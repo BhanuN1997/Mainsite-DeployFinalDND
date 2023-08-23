@@ -4,9 +4,18 @@ import { Handle, Position } from "reactflow";
 import SlackAction from "@/integrations/actions/slack/SlackAction";
 import RFStore from "@/store/reactFlowStore";
 
+
+function createOptions(num:number){
+    let items=[<option value="none">None</option>]
+    for (let i=1;i<=num;i++){
+      items.push(<option key={i} value={i}>{i}</option>)
+    }
+    return items
+}
+
 export default function ActionNode({data,id}:{data:any,id:string}) {
   const [selected, setSelected] = useState("");
-  const [classify,setClassify]=useState("no");
+  const [classify,setClassify]=useState("");
   const onSelect = (event: any) => {
     setSelected(event.target.value);
   };
@@ -43,15 +52,15 @@ export default function ActionNode({data,id}:{data:any,id:string}) {
               onChange={(e)=>setClassify(e.target.value)}
               defaultValue={classify}
             >
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
+              
+              {createOptions(data.options)}
             </select>
           </div>
         </div>
         {(()=>{
                 switch(selected){
                     case 'slack':
-                        return <SlackAction classify={classify}/>
+                        return <SlackAction classify={classify} id={id}/>
                 }
             })()}
 

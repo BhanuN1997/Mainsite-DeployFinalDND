@@ -171,24 +171,25 @@ const RFStore = create<RFState>((set, get) => ({
       const numNodesOnEachSide = Math.floor(numNodes / 2);
       const spacingBetweenNodes = 500; // Adjust this value as needed
 
-      for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide; i++) {
-      
-        const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
-        const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
+      for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide && numNodes>newNodes.length; i++) {
+          const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
+          const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
 
-        const newNode = {
-          id: newNodeId,
-          data: {
-            parentType: sourceNode.type,
-          },
-          position: {
-            x: xCoordinate,
-            y: sourceNode.position.y + 500, // Set a constant y-coordinate
-          },
-          type: "action",
-        };
+          const newNode = {
+              id: newNodeId,
+              data: {
+                  options: numNodes,
+                  parentType: sourceNode.type,
+              },
+              position: {
+                  x: xCoordinate,
+                  y: sourceNode.position.y+500, // Set a constant y-coordinate
+              },
+              type: "action",
+          };
 
-        newNodes.push(newNode);
+          newNodes.push(newNode);
+
       }
 
       const updatedNodes = [...state.nodes, ...newNodes];
