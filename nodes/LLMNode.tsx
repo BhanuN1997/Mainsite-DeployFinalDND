@@ -39,7 +39,11 @@ export default function LLMNode({id}) {
         
       <Handle type="source" position={Position.Bottom} id="a" />
       <button  className="button"onClick={handleRemoveNode}>Remove Node</button>
-      <AddNodesForm llmnodeId={id}/>
+      <div className="_mt_16px">
+      <button className="button" onClick={()=>{}}>+</button>
+      </div>
+      
+      {/* <AddNodesForm llmnodeId={id}/> */}
       
 
     </div>

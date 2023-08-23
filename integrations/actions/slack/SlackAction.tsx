@@ -5,7 +5,7 @@ import { sendSlackMsg } from "./server";
 import { GmailData, useGmailStore } from "@/store/gmailStore";
 import { useAIStore } from "@/store/AIStore";
 
-export default function SlackAction({classify,id}) {
+export default function SlackAction({classify,id,option}) {
   const redditPost=useRedditPostStore(state=>state.redditPost)
   const gmailData=useGmailStore(state=>state.gmailData)
   const AIData=useAIStore(store=>store.AIData)
