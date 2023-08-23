@@ -1,8 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
-import { RedditPost, useRedditPostStore } from "@/store/redditStore";
-import { useSlackStore } from "@/store/slackStore";
-import { getwebhook, sendSlackMsg } from "./server";
+import { useRedditPostStore } from "@/store/redditStore";
+import { sendSlackMsg } from "./server";
 import { GmailData, useGmailStore } from "@/store/gmailStore";
 import { useAIStore } from "@/store/AIStore";
 
