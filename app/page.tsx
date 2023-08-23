@@ -17,6 +17,7 @@ import LLMNode from "@/nodes/LLMNode";
 import toast from "react-hot-toast";
 import jwt_decode from "jwt-decode";
 import SaveButton from "@/components/reactflow/SaveButton";
+import DeleteSavedDataButton from "@/components/reactflow/DeleteSavedButton";
 
 const defaultViewPort: Viewport = { x: 0, y: 0, zoom: 1.5 };
 
@@ -117,6 +118,7 @@ export default function Home() {
   return (
     <div className="grow">
        <SaveButton/>
+       <DeleteSavedDataButton/>
       <ReactFlowProvider>
         <ReactFlow
           nodes={nodes}
