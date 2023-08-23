@@ -172,6 +172,7 @@ const RFStore = create<RFState>((set, get) => ({
       const spacingBetweenNodes = 500; // Adjust this value as needed
 
       for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide; i++) {
+      
         const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
         const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
 
