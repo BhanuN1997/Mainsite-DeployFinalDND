@@ -10,6 +10,7 @@ function InputForm(num, setInput, inputs) {
       key={num}
       type="text"
       value={inputs[num]}
+      style={{border: "3px solid"}}
       onChange={(e) => {
         const updatedInputs = [...inputs];
         updatedInputs[num] = e.target.value;
@@ -85,6 +86,7 @@ export default function LLMNode({ id }) {
       </div>
       {inputs.map((input, index) => (
         <div key={index}>
+          Input: 
           {InputForm(index, setInput, inputs)}
         </div>
       ))}
