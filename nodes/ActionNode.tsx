@@ -51,7 +51,7 @@ export default function ActionNode({data,id}:{data:any,id:string}) {
         {(()=>{
                 switch(selected){
                     case 'slack':
-                        return <SlackAction classify={classify} id={id} option={data.option}/>
+                        return <SlackAction id={id} option={data.option}/>
                 }
             })()}
 

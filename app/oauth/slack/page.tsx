@@ -15,7 +15,7 @@ export default function SlackAuth(){
           {
             const w=await getwebhook(code)
             console.log(w)
-            localStorage.setItem("slackCode",w!)
+            localStorage.setItem("slackWebhook",w!)
             setWebhook(w)
           }
           
