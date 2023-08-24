@@ -14,18 +14,12 @@ export default function StoreInitializer() {
       position: { x: 250, y: 25 },
     },
 
-    {
-      id: "2",
-      type: "action",
-      data: { label: "Output" },
-      position: { x: 250, y: 500 },
-    },
+  
   ];
 
-  const edges: Edge[] = [{ id: "e1-2", source: "1", target: "2" ,type:'buttonedge'}];
 
   if (!initialized.current) {
-    RFStore.setState({ nodes, edges });
+    RFStore.setState({ nodes});
     initialized.current = true;
   }
 
