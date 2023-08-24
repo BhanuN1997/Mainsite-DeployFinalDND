@@ -23,7 +23,7 @@ type RFState = {
   addEdge: (sourceId: string, targetId: string) => void;
   removeEdge: (id: string) => void;
   removeNodeAndEdges: (id: string) => void;
-  addNodesAroundLLM: (numnodes: number, nodeId: string) => void;
+  addNodesAroundLLM: (nodeId: string,values: any[]) => void;
   setGraphState: (graphState:any) =>void;
   addNodeBelow: (nodeId:any,nodeType:string) =>void;
 };
@@ -161,17 +161,18 @@ const RFStore = create<RFState>((set, get) => ({
       };
     });
   },
-  addNodesAroundLLM: (numNodes, llmNodeId) => {
+  addNodesAroundLLM: ( llmNodeId,values) => {
     set((state) => {
       const sourceNode = state.nodes.find((node) => node.id === llmNodeId);
 
       if (!sourceNode || sourceNode.type !== "llm") {
         return state; // Return unchanged state if source node is not found or not of type "llm"
       }
+      const numNodes=values.length
       const newNodes = [];
       const numNodesOnEachSide = Math.floor(numNodes / 2);
       const spacingBetweenNodes = 500; // Adjust this value as needed
-
+      let count=0
       for (let i = -numNodesOnEachSide; i <= numNodesOnEachSide && numNodes>newNodes.length; i++) {
           const newNodeId = `${state.nodes.length + i + numNodesOnEachSide + 1}`;
           const xCoordinate = sourceNode.position.x + i * spacingBetweenNodes;
@@ -179,7 +180,7 @@ const RFStore = create<RFState>((set, get) => ({
           const newNode = {
               id: newNodeId,
               data: {
-                  options: numNodes,
+                  option: values[count],
                   parentType: sourceNode.type,
               },
               position: {
@@ -188,7 +189,7 @@ const RFStore = create<RFState>((set, get) => ({
               },
               type: "action",
           };
-
+          count++;
           newNodes.push(newNode);
 
       }
