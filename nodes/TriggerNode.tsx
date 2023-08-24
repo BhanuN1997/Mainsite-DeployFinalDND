@@ -3,8 +3,9 @@ import { Handle, Position } from "reactflow";
 import { useRef, useState } from "react";
 import RedditTrigger from "@/integrations/triggers/reddit/RedditTrigger";
 import GmailTrigger from "@/integrations/triggers/gmail/GmailTrigger";
+import AddButton from "@/components/reactflow/AddButton";
 
-export default function TriggerNode({data}:{data:any}) {
+export default function TriggerNode({data,id}:{data:any,id:any}) {
   const inputRef = useRef<HTMLInputElement>(null!);
   const passwordRef = useRef<HTMLInputElement>(null!);
   const [selected, setSelected] = useState("");
@@ -39,7 +40,7 @@ export default function TriggerNode({data}:{data:any}) {
       })()}
       </div>
       
-
+      <AddButton id={id}/>
       <Handle type="source" position={Position.Bottom} id="a" />
       
     </div>

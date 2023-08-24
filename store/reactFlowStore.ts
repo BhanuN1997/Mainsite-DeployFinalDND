@@ -25,6 +25,7 @@ type RFState = {
   removeNodeAndEdges: (id: string) => void;
   addNodesAroundLLM: (numnodes: number, nodeId: string) => void;
   setGraphState: (graphState:any) =>void;
+  addNodeBelow: (nodeId:any,nodeType:string) =>void;
 };
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -217,6 +218,47 @@ const RFStore = create<RFState>((set, get) => ({
       edges: graphState.edges,
     });
   },
+  addNodeBelow : (nodeId,nodeType) => {
+    set((state) => {
+
+      console.log(nodeId,nodeType)
+
+      const existingNode = state.nodes.find((node) => node.id === nodeId);
+  
+      if (!existingNode) {
+        return state; // Return unchanged state if existing node is not found
+      }
+  
+      const newNodeId = `${state.nodes.length + 1}`;
+      const newNode = {
+        id: newNodeId,
+        data: {
+          parentType: existingNode.type,
+        },
+        position: {
+          x: existingNode.position.x,
+          y: existingNode.position.y + 500, // Adjust the y-coordinate as needed
+        },
+        type: nodeType, // Replace with the desired node type
+      };
+  
+      const updatedNodes = [...state.nodes, newNode];
+      
+      const updatedEdges = [...state.edges, {
+        id: `${existingNode.id}-${newNode.id}`,
+        source: existingNode.id,
+        target: newNode.id,
+        type: "buttonedge", // Replace with the desired edge type
+      }];
+  
+      return {
+        nodes: updatedNodes,
+        edges: updatedEdges,
+      };
+    });
+  }
+  
+  
 
 }));
 
