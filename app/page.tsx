@@ -18,12 +18,38 @@ import toast from "react-hot-toast";
 import jwt_decode from "jwt-decode";
 import SaveButton from "@/components/reactflow/SaveButton";
 import DeleteSavedDataButton from "@/components/reactflow/DeleteSavedButton";
+import { useSearchParams } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 
 const defaultViewPort: Viewport = { x: 0, y: 0, zoom: 1.5 };
 
 export default function Home() {
 
+  const searchParams = useSearchParams()
  
+
+  useEffect(() => {
+    const savedGraphState = localStorage.getItem('graphConfigs');
+    console.log(savedGraphState)
+
+    // Retrieve the configId from the URL query parameters
+    
+    const configId = searchParams.get('configId')
+    if (configId) {
+      const parsedGraphState = JSON.parse(savedGraphState);
+      // Fetch the saved configuration using configId from local storage
+      const config = parsedGraphState.find((item) => item.id === configId);
+    console.log(config)
+
+      if (config) {
+        // Update the Zustand store with the fetched configuration
+        // You need to implement the appropriate setters in RFStore
+        setGraphState(config.config)
+        // Call any other necessary setters to update the Zustand store
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const exchangeCodeForTokens = async () => {
@@ -87,13 +113,7 @@ export default function Home() {
   }, []);
   
   const { edges, nodes,onConnect,onEdgesChange,onNodesChange,setGraphState } =RFStore()
-  useEffect(() => {
-    const savedGraphState = localStorage.getItem('graphState');
-    if (savedGraphState) {
-      const parsedGraphState = JSON.parse(savedGraphState);
-      setGraphState(parsedGraphState); // Update the Zustand store with the saved state
-    }
-  }, [setGraphState]);
+
 
   useEffect(() => {
     // This effect will run whenever the 'nodes' array changes in the store

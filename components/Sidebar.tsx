@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Sidebar = () => {
   return (
@@ -32,7 +33,7 @@ const Sidebar = () => {
           height={20}
           width={20}
         />
-        Saved Templates
+        <Link href='/savedtemplates'>Saved Templates</Link>
       </div>
 
       <div className="flex items-center gap-3 font-bold">
