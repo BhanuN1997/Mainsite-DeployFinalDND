@@ -34,7 +34,6 @@ export default function ExcelLoader() {
         for(const key in x){
           d+=`${key}:${x[key]} `
         }
-        console.log(d)
           solveData(model,d)
       }
     }

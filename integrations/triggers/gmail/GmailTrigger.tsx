@@ -1,5 +1,4 @@
 import React from "react";
-import { getgmailinbox , ImapConf} from "./server";
 import { GmailCronJob } from "@/integrations/cronjobs/gmail/gmail";
 
 export default function GmailTrigger(props:any) {

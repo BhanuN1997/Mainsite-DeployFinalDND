@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import RedditTrigger from "@/integrations/triggers/reddit/RedditTrigger";
 import GmailTrigger from "@/integrations/triggers/gmail/GmailTrigger";
 import AddButton from "@/components/reactflow/AddButton";
+import GithubTrigger from "@/integrations/triggers/github/GIthubTrigger";
 
 export default function TriggerNode({data,id}:{data:any,id:any}) {
   const inputRef = useRef<HTMLInputElement>(null!);
@@ -28,6 +29,7 @@ export default function TriggerNode({data,id}:{data:any,id:any}) {
             <option value="none">None</option>
             <option value="reddit">Reddit</option>
             <option value="gmail">Gmail</option>
+            <option value="github">Github</option>
           </select>
         </div>
         {(() => {
@@ -36,6 +38,8 @@ export default function TriggerNode({data,id}:{data:any,id:any}) {
             return <RedditTrigger inputRef={inputRef} data={data} />;
            case 'gmail':
             return <GmailTrigger emailInputRef={inputRef} passwordInputRef={passwordRef} data={data}/>
+           case 'github':
+            return <GithubTrigger/>
         }
       })()}
       </div>

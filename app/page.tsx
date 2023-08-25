@@ -1,6 +1,5 @@
 "use client";
 import "reactflow/dist/style.css";
-import shallow from 'zustand/shallow';
 import ReactFlow, {
   Controls,
   Edge,
@@ -19,8 +18,6 @@ import jwt_decode from "jwt-decode";
 import SaveButton from "@/components/reactflow/SaveButton";
 import DeleteSavedDataButton from "@/components/reactflow/DeleteSavedButton";
 import { useSearchParams } from "next/navigation";
-
-import { useRouter } from "next/navigation";
 
 const defaultViewPort: Viewport = { x: 0, y: 0, zoom: 1.5 };
 
