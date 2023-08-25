@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function SavedTemplate() {
-  const [savedConfigs, setSavedConfigs] = useState("");
+  const [savedConfigs, setSavedConfigs] = useState([]);
 
   useEffect(() => {
     const savedConfigsStr = localStorage.getItem("graphConfigs");
