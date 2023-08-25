@@ -26,7 +26,8 @@
     "react-hot-toast": "^2.4.1",
     "reactflow": "^11.7.4",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/imap": "^0.8.37",
