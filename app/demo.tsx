@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import PaymentPage from "./payments";
+import PaymentPage from "../components/payments";
 
 const Sidebar = () => {
   return (
