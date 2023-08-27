@@ -11,9 +11,9 @@ export default function AddNodesForm({llmnodeId}:{llmnodeId:string}) {
       }
     };
   
-    const handleAddNodesClick = () => {
+   /*  const handleAddNodesClick = () => {
       addNodesAroundLLM(numNodes,llmnodeId);
-    };
+    }; */
   
     return (
       <div>
@@ -24,7 +24,7 @@ export default function AddNodesForm({llmnodeId}:{llmnodeId:string}) {
           onChange={handleNumNodesChange}
         /></label>
         
-        <button  className="button" onClick={handleAddNodesClick}>Add Nodes</button>
+        <button  className="button" onClick={()=>{}}>Add Nodes</button>
       </div>
     );
   };

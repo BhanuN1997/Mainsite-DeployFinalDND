@@ -30,7 +30,8 @@
     "reactflow": "^11.7.4",
     "stripe": "^13.2.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/imap": "^0.8.37",
