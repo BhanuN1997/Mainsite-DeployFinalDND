@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import {read, utils} from "xlsx"
