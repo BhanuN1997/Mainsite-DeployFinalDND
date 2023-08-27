@@ -1,4 +1,4 @@
-"use server"
+ // "use server"
 import {OpenAI} from 'langchain/llms/openai'
 import {PromptTemplate} from 'langchain/prompts'
 import {LLMChain} from 'langchain/chains'
