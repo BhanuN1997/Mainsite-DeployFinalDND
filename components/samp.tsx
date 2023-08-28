@@ -1,10 +1,8 @@
 "use client"
 import React from "react";
 import Image from "next/image";
-// import Link from "next/link";
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-
-import PaymentPage from "./payments"; // Make sure to import your PaymentPage component correctly
+import PaymentPage from "./payments";
 
 const Sidebar = () => {
   return (
@@ -22,7 +20,7 @@ const Sidebar = () => {
         PlayGround
       </div>
       <div className="flex items-center gap-3">
-        <Image
+      <Image
           src={"/asset/playground.png"}
           alt="marketplace image"
           height={30}
@@ -37,24 +35,29 @@ const Sidebar = () => {
           height={20}
           width={20}
         />
-         {/* <Link to='/savedtemplates'>Saved Templates</Link> */}
-        
-        Saved Templates
+        <Link to='/savedtemplates'>Saved Templates</Link>
       </div>
 
       <div className="flex items-center gap-3 font-bold">
         AI
       </div>
+      
 
-     <Router>
-      <div>
-        <Link to ="/payment">
-          <button><strong>Payment</strong></button>
-        </Link>
-      </div>
-      <Routes>
-      <Route path="/payment" Component={PaymentPage} />
-      </Routes>
+      <Router>
+        <div>
+          <ul>
+            <li>
+      <Link to="/payment">
+                <button className="custom-button"><strong>Payment</strong></button>
+              </Link>
+              </li>
+              </ul>
+              </div>
+              <div>
+              <Routes>
+              <Route path="/payment" Component={PaymentPage} />
+              </Routes>
+              </div>
       </Router>
     </aside>
   );
