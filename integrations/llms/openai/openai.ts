@@ -12,7 +12,7 @@ async function classifyData(model:OpenAI,data:string,userPrompt:string){
     return output.text
 }
 
-export async function sendOpenAIRequest(apiKey:string,data:string,prompt:string){
+export default async function sendOpenAIRequest(apiKey:string,data:string,prompt:string){
     const model=new OpenAI({openAIApiKey: apiKey})
     let option='classify'
 
