@@ -8,31 +8,31 @@ import PaymentPage from "./payments"; // Make sure to import your PaymentPage co
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col gap-16 min-h-[100%] text-2xl p-6 text-gray-600 pt-8 bg-purple-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100">
-      <div className="flex items-center gap-3 font-bold">
-        Workflow
+    <aside className="flex flex-col gap-12 min-h-[100%] text-2xl p-6 pt-8 ">
+      <div className="flex justify-center items-center gap-3 font-bold">
+        App Workflows
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 text-xl">
         <Image
-          src={"/asset/playground.png"}
+          src={"/asset/Vectorworkflow.png"}
           alt="Playground image"
           height={20}
           width={20}
         />
-        PlayGround
+        Create Workflow
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 text-xl">
         <Image
-          src={"/asset/playground.png"}
+          src={"/asset/Vectormarketplace.png"}
           alt="marketplace image"
           height={30}
           width={20}
         />
         MarketPlace
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 text-xl">
         <Image
-          src={"/asset/templates.png"}
+          src={"/asset/Vectorsavedtemplate.png"}
           alt="template image"
           height={20}
           width={20}
@@ -42,20 +42,90 @@ const Sidebar = () => {
         Saved Templates
       </div>
 
-      <div className="flex items-center gap-3 font-bold">
-        AI
+      <div className="flex justify-center items-center gap-3 font-bold">
+        AI Workflows
       </div>
 
-     <Router>
-      <div>
-        <Link to ="/payment">
-          <button><strong>Payment</strong></button>
-        </Link>
+    
+
+
+    
+      <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectorworkflow.png"}
+          alt="Playground image"
+          height={20}
+          width={20}
+        />
+        Create Worlflow
       </div>
-      <Routes>
-      <Route path="/payment" Component={PaymentPage} />
-      </Routes>
-      </Router>
+      <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectormarketplace.png"}
+          alt="marketplace image"
+          height={30}
+          width={20}
+        />
+        MarketPlace
+      </div>
+      <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectorsavedtemplate.png"}
+          alt="template image"
+          height={20}
+          width={20}
+        />
+         {/* <Link to='/savedtemplates'>Saved Templates</Link> */}
+        
+        Saved Templates
+      </div>
+
+      <div className=" flex flex-col mt-auto gap-10 border-t  border--t-2 border-solid border-gray-300 bg-white pt-6">
+      <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectorprofile.png"}
+          alt="template image"
+          height={20}
+          width={20}
+        />
+         {/* <Link to='/savedtemplates'>Saved Templates</Link> */}
+        
+        Profile
+      </div>
+      <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectorsettings.png"}
+          alt="template image"
+          height={20}
+          width={20}
+        />
+         {/* <Link to='/savedtemplates'>Saved Templates</Link> */}
+        
+        Settings
+      </div >
+        <Router>
+        <div>
+          <Link to ="/payment">
+          <div className="flex items-center gap-3 text-xl">
+        <Image
+          src={"/asset/Vectorsavedtemplate.png"}
+          alt="template image"
+          height={20}
+          width={20}
+        />
+         {/* <Link to='/savedtemplates'>Saved Templates</Link> */}
+        
+        Payment
+      </div>
+          </Link>
+        </div>
+        <Routes>
+        <Route path="/payment" Component={PaymentPage} />
+        </Routes>
+        </Router>
+      </div>
+
+      
     </aside>
   );
 };

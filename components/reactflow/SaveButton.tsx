@@ -23,7 +23,8 @@ export default function SaveButton() {
   return (
     <div>
       {/* Render your graph using nodes and edges */}
-      <button className='button' onClick={handleSave}>Save</button>
+      
+      <button className='  z-30 button absolute left-4 top-4 bg-white text-black font-bold py-2 px-3 rounded' onClick={handleSave}>Save</button>
     </div>
   );
 }

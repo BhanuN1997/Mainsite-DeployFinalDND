@@ -18,8 +18,13 @@ export default function ActionNode({data,id}:{data:any,id:string}) {
   return (
     <div className="node_container drop_shadow_md">
       <Handle type="target" position={Position.Top} />
-      <div className="purple_gradient _heading _flex justify_center">
-        Action
+      <button style={{ position: "absolute",
+        transform: "translate(30%,45%)",
+        fontSize: 12, 
+        pointerEvents: "all",}} className="edgebutton bg-purple-300 border border-purple-400 p-2 focus:outline-none flex justify-center items-center" onClick={handleRemoveNode}>-</button>
+
+      <div className="_heading _flex justify_center">
+        <div className="border _ml_8px">Action</div>
         
       </div>
       <div className="_text _p_8px">
@@ -47,7 +52,6 @@ export default function ActionNode({data,id}:{data:any,id:string}) {
 
       </div>
       <Handle type="source" position={Position.Bottom} />
-      <button className="button" onClick={handleRemoveNode}>Remove Node</button>
 
 
     </div>

@@ -14,8 +14,9 @@ export default function TriggerNode({data,id}:{data:any,id:any}) {
     setSelected(event.target.value);
   };
   return (
-    <div className="node_container drop_shadow_md">
-      <div className= "purple_gradient _heading _flex justify_center " >Trigger</div>
+    <div className="node_container drop_shadow_md bg-red">
+            <AddButton id={id} />
+      <div className= " _heading _flex justify_center  " ><div className="border _ml_8px">Trigger</div></div>
       <div className="_text _p_8px" >
         <div className="_mb_16px">
           <span className="_mr_8px ">Select App:</span>
@@ -44,7 +45,6 @@ export default function TriggerNode({data,id}:{data:any,id:any}) {
       })()}
       </div>
       
-      <AddButton id={id}/>
       <Handle type="source" position={Position.Bottom} id="a" />
       
     </div>
