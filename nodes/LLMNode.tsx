@@ -39,7 +39,13 @@ export default function LLMNode({ id }) {
   return (
     <div className="node_container drop_shadow_md">
       <Handle type="target" position={Position.Top} />
-      <div className="purple_gradient _heading _flex justify_center">LLM</div>
+      <button style={{ position: "absolute",
+        transform: "translate(30%,45%)",
+        fontSize: 12, 
+        pointerEvents: "all",}} className="edgebutton bg-purple-300 border border-purple-400 p-2 focus:outline-none flex justify-center items-center" onClick={handleRemoveNode}>
+        -
+      </button>
+      <div className=" _heading _flex justify_center"><div className="border _ml_8px">LLM</div></div>
       <div className="_text _p_8px">
         <span className="_mr_8px">Models:</span>
         <select
@@ -68,9 +74,7 @@ export default function LLMNode({ id }) {
       })()}
 
       <Handle type="source" position={Position.Bottom} id="a" />
-      <button className="button" onClick={handleRemoveNode}>
-        Remove Node
-      </button>
+     
       <div className="_mt_16px">
         <button
           className="button"

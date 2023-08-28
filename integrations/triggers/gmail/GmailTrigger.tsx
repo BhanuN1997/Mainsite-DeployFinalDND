@@ -30,7 +30,7 @@ export default function GmailTrigger(props:any) {
       <div className="_flex justify_center margin_8px">
         <button
         
-          className="purple_gradient button_padding"
+          className="button"
           type="submit"
           onClick={() => {
             props.data.email = props.emailInputRef.current.value;

@@ -133,7 +133,7 @@ export default function Home() {
     []
   );
   return (
-    <div className="grow">
+    <div className="grow relative">
        <SaveButton/>
        <DeleteSavedDataButton/>
       <ReactFlowProvider>

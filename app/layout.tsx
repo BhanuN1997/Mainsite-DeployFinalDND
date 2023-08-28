@@ -25,7 +25,7 @@ export default function RootLayout({
         <Navbar />
         <StoreInitializer/>
         <div className="flex grow">
-          <div className="min-w-[250px] border-r-2 border-gray-300">
+          <div className="min-w-[250px] rounded-lg border-2 border-solid border-gray-300 bg-white shadow-md">
             <Sidebar />
           </div>
 
