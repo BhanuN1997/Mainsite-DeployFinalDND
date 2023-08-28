@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Handle, Position } from "reactflow";
 import SlackAction from "@/integrations/actions/slack/SlackAction";
 import RFStore from "@/store/reactFlowStore";
+import GmailAction from "@/integrations/actions/gmail/GmailAction";
 
 export default function ActionNode({data,id}:{data:any,id:string}) {
   const [selected, setSelected] = useState("");
@@ -32,26 +33,14 @@ export default function ActionNode({data,id}:{data:any,id:string}) {
         >
           <option value="none">None</option>
           <option value="slack">Slack</option>
+          <option value="gmail">Gmail</option>
         </select>
-       {/*  <div style={{ display: data.parentType === "llm" ? "block" : "none" }}>
-          <div className="_mt_16px">
-            <span className="_mr_8px ">Classify:</span>
-            <select
-              className="_input"
-              name=""
-              id=""
-              onChange={(e)=>setClassify(e.target.value)}
-              defaultValue={classify}
-            >
-              
-              {createOptions(data.options)}
-            </select>
-          </div>
-        </div> */}
         {(()=>{
                 switch(selected){
                     case 'slack':
                         return <SlackAction id={id} option={data.option}/>
+                    case 'gmail':
+                      return <GmailAction id={id} option={data.option}/>
                 }
             })()}
 
